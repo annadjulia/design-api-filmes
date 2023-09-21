@@ -22,9 +22,16 @@ export const Movie = styled.li`
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: .5rem;
+    padding: 2rem 0;
+    :hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px #fff;
+    }
     img {
         width: 180px;
-        border-radius: 1rem;
+        border-radius: .5rem;
         margin-bottom: 2rem;
     }
     span {
@@ -44,7 +51,7 @@ export const Btn = styled.button`
     margin-top: 5px;
     padding: 0.7rem 3rem;
     border: none;
-    border-radius: 15px;
+    border-radius: 5px;
     color: #212121;
     background-color: #ffffff;
     font-weight: 1000;

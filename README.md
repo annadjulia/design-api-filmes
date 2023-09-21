@@ -1,9 +1,10 @@
 # API DE FILMES USANDO REACTJS
 
 Por [Diego Candido](https://diegocandido.com)
+Estilizada por [Ana Júlia]
 
 
-Montei esse projeto bem básico para consumir uma API Rest com lista de filmes.
+Projeto básico para consumir uma API Rest com lista de filmes.
 
 
 
@@ -36,16 +37,3 @@ cd react-filmes
 npm install
 npm start
 ```
-
-## Tela Inicial do projeto:
-
-![screan](https://user-images.githubusercontent.com/81689363/190420116-177e6087-c1dd-4276-bef1-1dd20e575039.PNG)
-
-
-## Tela de detalhes do filme:
-
-![details](https://user-images.githubusercontent.com/81689363/190419902-82b9ce94-3944-4bdb-ad1c-e35a93b142e1.PNG)
-
-
-
- 

@@ -24,7 +24,7 @@ export const Movie = styled.li`
     justify-content: space-evenly;
     transition: transform 0.3s, box-shadow 0.3s;
     border-radius: .5rem;
-    padding: 2rem 0;
+    padding: 2rem;
     :hover {
         transform: scale(1.1);
         box-shadow: 0 0 20px #fff;
@@ -32,19 +32,19 @@ export const Movie = styled.li`
     img {
         width: 180px;
         border-radius: .5rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
     }
     span {
-        font-weight: bold;
+        font-weight: normal;
         font-size: 120%;
         text-align: center;
     }
-    a {
+    /*a {
         transition: all 0.3s;
     }
     a:hover {
         transform: scale(1.1);
-    }
+    }*/
 `;
 
 export const Btn = styled.button`

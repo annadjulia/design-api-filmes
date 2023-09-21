@@ -1,7 +1,7 @@
 # API DE FILMES USANDO REACTJS
 
 Por [Diego Candido](https://diegocandido.com)
-#### Estilizada por [Ana Júlia]
+#### Estilizada por Ana Júlia
 
 
 Projeto básico para consumir uma API Rest com lista de filmes.

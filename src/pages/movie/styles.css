@@ -9,10 +9,6 @@ nav h1 {
   text-align: center;
 }
 
-.container {
-  text-align: center;
-}
-
 .link_button {
   margin-top: 5px;
   padding: 0.7rem 3rem;
@@ -29,10 +25,6 @@ nav h1 {
   transform: scale(1.1);
 }
 
-.img_movie {
-  width: 20%;
-  margin: 0 40%;
-}
 
 .movie-desc {
   text-align: justify;

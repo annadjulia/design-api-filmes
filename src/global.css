@@ -6,7 +6,9 @@
 }
 
 body {
-  background-color: #00AAB3;
+  background-image: url("../public/media/sky.jpg");
+  background-size: cover;
+  background-attachment: fixed;
   color: white;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
@@ -14,4 +16,19 @@ body {
 
 ::-webkit-scrollbar {
   display: none;
+}
+.row{
+  width: 100%;
+  margin: 0;
+  display: flex;
+}
+a{
+  text-decoration: none;
+}
+ul{
+  list-style: none;
+  padding: 0;
+}
+.carousel{
+  margin: 0;
 }

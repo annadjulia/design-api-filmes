@@ -12,18 +12,17 @@ import styled from "styled-components";
 
 export const Fav = styled.li`
     display: flex;
-    flex-direction: column;
     align-items: center;
     transition: transform 0.3s, box-shadow 0.3s;
     border-radius: .5rem;
-    border: 1px solid #fff;
-    .col-md-3 {
+    //border: 1px solid rgba(255, 255, 255, 5);
+    div {
         padding: 0;
     }
     img {
+        border-radius: .5rem;
         width: 100%;
         height: auto;
-        border-radius: .5rem 0 0 .5rem;
     }
     p {
         font-weight: normal;
@@ -39,10 +38,12 @@ export const Mov = styled.li`
     transition: transform 0.3s, box-shadow 0.3s;
     border-radius: .5rem;
     border: 1px solid #fff;
-    /*:hover {
+    :hover {
         transform: scale(1.05);
-        box-shadow: 0 0 20px #fff;
-    }*/
+        img{
+            box-shadow: 0 0 10px 10px #fff;
+        }
+    }
     img {
         width: 100%;
         border-radius: .5rem;

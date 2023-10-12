@@ -1,0 +1,5 @@
+<Navbar bg="light">
+            <Container>
+                <Image src="./media/logo-red.png" alt="logo" width="auto" height="50" />
+            </Container>
+        </Navbar>

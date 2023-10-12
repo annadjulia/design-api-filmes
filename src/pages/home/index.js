@@ -1,11 +1,34 @@
 import { useEffect, useState } from "react";
 import { Mov, Btn, Fav } from "./style";
-import { Container, Row, Col, Image, Navbar } from "react-bootstrap";
+import { Container, Row, Col, Image } from "react-bootstrap";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
+import Carousel  from 'react-bootstrap/Carousel';
+import Topo, { Footer } from "../extra";
+
+const imagePath = "https://image.tmdb.org/t/p/w500";
+const SliderLegal = (props) => {
+    return (
+        <Row>
+        <Slider className="row" lazyLoad="progressive" slidesToScroll={1} slidesToShow={6} dots={true} speed={400}>
+            {props.oloco.map((movie) => {
+                return (
+                    <Mov className="col-2" sm={2} key={movie.id}>
+                    <Link to={`/${movie.id}`}>
+                        <Image fluid
+                            src={`${imagePath}${movie.poster_path}`}
+                            alt={movie.title}
+                        />
+                    </Link>
+                    </Mov>
+                );
+            })}
+        </Slider>
+        </Row>
+    );
+}
 
 function Home() {
-    const imagePath = "https://image.tmdb.org/t/p/w500";
 
     const [list, setList] = useState([]);
     const [pops, setPops] = useState([]);
@@ -19,6 +42,10 @@ function Home() {
             .then(response => response.json())
             .then(data => {
                 setList(data.items);
+                carregaPops();
+                carregaNows();
+                carregaTops();
+                carregaComs();
             });
         }
         async function carregaPops() {
@@ -51,68 +78,45 @@ function Home() {
         }
 
         carregaList();
-        carregaPops();
-        carregaNows();
-        carregaTops();
-        carregaComs();
     }, [KEY]);
 
-    const SliderLegal = (props) => {
-        return (
-            <Slider slidesToScroll={1} slidesToShow={5} dots={true} speed={400}>
-                {props.oloco.map((movie) => {
-                    return (
-                        <Mov key={movie.id}>
-                            <img
-                                src={`${imagePath}${movie.poster_path}`}
-                                alt={movie.title}
-                            />
-                            <p>{movie.title}</p>
-
-                            <Link to={`/${movie.id}`}>
-                                <Btn>Detalhes</Btn>
-                            </Link>
-                        </Mov>
-                    );
-                })}
-            </Slider>
-        );
-    }
 
     document.title = "THE WATCHER";
 
     return (
         <div>
-            <Navbar bg="light">
-                <Navbar.Brand>THE WATCHER</Navbar.Brand>
-            </Navbar>
-            <Container>
-                <h1>Favoritos</h1>
-                <Slider slidesToShow={1} slidesToScroll={1} autoplay={true} autoplaySpeed={4000} speed={1100}>
+            
+            <Topo/>
+
+            <Container fluid>
+                <Carousel autoplay interval={3000} fade indicators={false} >
                     {list.map((movie) => {
                         return (
+                            <Carousel.Item key={movie.id}>
                             <Fav className="container-fluid" key={movie.id}>
                                 <Row>
-                                    <Col md={3}>
-                                        <Image
-                                            src={`${imagePath}${movie.poster_path}`}
+                                    <Col md={7}>
+                                        <Image fluid
+                                            src={`${imagePath}${movie.backdrop_path}`}
                                             alt={movie.title}
                                         />
                                     </Col>
-                                    <Col className="align-content-center" md={9}>
+                                    <Col className="align-content-center" md={5}>
                                         <Row>
-                                            <p>{movie.title}</p>
-
-                                        <Link to={`/${movie.id}`}>
-                                            <Btn>Detalhes</Btn>
-                                        </Link>
+                                            <Col auto>
+                                                <p>{movie.title}</p>
+                                                <Link to={`/${movie.id}`}>
+                                                    <Btn>Ver mais</Btn>
+                                                </Link>
+                                            </Col>
                                         </Row>
                                     </Col>
                                 </Row> 
                             </Fav>
+                            </Carousel.Item>
                         );
                     })}
-                </Slider>
+                </Carousel>
             </Container>
             <Container>
                 <h1>Em cartaz</h1>
@@ -127,8 +131,10 @@ function Home() {
                 <h1>Em breve</h1>
                 <SliderLegal oloco={coms} />
             </Container>
+            <Footer/>
         </div>
     );
 }
 
 export default Home;
+export { SliderLegal };

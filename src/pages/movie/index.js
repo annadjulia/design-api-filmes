@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { format } from "date-fns";
-import { Navbar, Container, Row, Col, Image, Button, Nav } from 'react-bootstrap';
-import Slider from "react-slick";
+import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import { Mov, Btn } from "./style";
-import "./styles.css";
+import Topo, { Footer } from "../extra";
+import { SliderLegal } from "../home";
+import "./style.css";
 
 const Movie = () => {
     const { id } = useParams();
@@ -14,8 +14,22 @@ const Movie = () => {
     const [movie, setMovie] = useState([]);
     const [alike, setAlike] = useState([]);
     const [genres, setGenres] = useState([]);
+
     const KEY = process.env.REACT_APP_KEY;
     useEffect(() => {
+        async function carregaAlike() {
+            fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&with_genres=${genres.slice(0,3)}&language=pt-BR`)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        let res = data.results;
+                        res = res.filter((mov) => {
+                            return mov.id !== movie.id;
+                        });
+                        setAlike(res);
+                        console.log(res);
+                    });
+            }
+
         async function carregaFilme() {
         fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${KEY}&language=pt-BR`)
             .then((response) => response.json())
@@ -26,43 +40,42 @@ const Movie = () => {
                 let genre = data.genres.map((genre) => {
                     return genre.id;
                 });
-                setGenres(genre);
                 console.log(genre);
-                setMovie(filme);
-
-                
+                setGenres(genre);
+                setMovie(filme);              
             }); // eslint-disable-next-line
         }
-        async function carregaAlike() {
-        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&with_genres=${genres.slice(0,3)}&language=pt-BR`)
-                .then((response) => response.json())
-                .then((data) => {
-                    let res = data.results;
-                    res = res.filter((mov) => {
-                        return mov.id !== movie.id;
-                    });
-                    setAlike(res);
-                });
-        }
         carregaFilme();
+        console.log(genres);
         carregaAlike();
-        window.scrollTo({top: 0, left: 0, behavior: 'auto'});
-    }, [KEY, id, genres]);
+    }, [id]);
+
+    useEffect(() => {
+        async function carregaAlike() {
+            fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&with_genres=${genres.slice(0,3)}&language=pt-BR`)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        let res = data.results;
+                        res = res.filter((mov) => {
+                            return mov.id !== movie.id;
+                        });
+                        setAlike(res);
+                        console.log(res);
+                    });
+            }
+        carregaAlike();
+    }, [genres]);
 
     document.title = movie.title;
 
     return (
         <div>
-            <Navbar bg="light">
-                <Container>
-                    <Image src="/logo-red.png" alt="logo" width="50" height="50" />
-                </Container>
-            </Navbar>
+            <Topo/>
 
             <Container>
                 <Row>
                     <Col md={5}>
-                        <Image
+                        <Image fluid
                             src={`${imagePath}${movie.poster_path}`}
                             alt={movie.title}
                         />
@@ -82,9 +95,11 @@ const Movie = () => {
                                     {movie.genres &&
                                         movie.genres.map((genre) => {
                                             return (
-                                                <li key={genre}>
+                                                <Link key={genre.id} to={`/discover/${genre.name}`}>
+                                                <li className="badge text-bg-primary rounded-pill" >
                                                     {genre.name}
                                                 </li>
+                                                </Link>
                                             );
                                         })}
                                 </ul>
@@ -93,30 +108,14 @@ const Movie = () => {
                                 <Button variant="primary">Voltar</Button>
                             </Link>
                         </Row>
-                        
                     </Col>
                 </Row>
             </Container>
             <Container>
                 <h1>Filmes parecidos</h1>
-                <Slider slidesToScroll={1} slidesToShow={5} dots={true} speed={400}>
-                    {alike.map((movie) => {
-                        return (
-                            <Mov key={movie.id}>
-                                <img
-                                    src={`${imagePath}${movie.poster_path}`}
-                                    alt={movie.title}
-                                />
-                                <p>{movie.title}</p>
-
-                                <Link to={`/${movie.id}`}>
-                                    <Btn>Detalhes</Btn>
-                                </Link>
-                            </Mov>
-                        );
-                    })}
-                </Slider>
+                <SliderLegal oloco={alike}/>
             </Container>
+            <Footer/>
         </div>
     );
 };

@@ -18,9 +18,9 @@ export const Mov = styled.li`
     border-radius: .5rem;
     //border: 1px solid #fff;
     :hover {
-        transform: scale(1.05);
+        transform: scale(1.03);
         img{
-            box-shadow: 0 0 15px .1px #fff;
+            //box-shadow: 0 0 15px .1px #fff;
         }
     }
     div{
@@ -28,12 +28,10 @@ export const Mov = styled.li`
         height: 100%;
     }
     img {
-        border-radius: .5rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.4rem;
     }
     p {
         font-weight: normal;
-        font-size: 90%;
         text-align: center;
         color: #fff;
     }

@@ -18,8 +18,8 @@ export const Mov = styled.li`
     border-radius: .5rem;
     border: 1px solid #fff;
     :hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 20px #fff;
+        transform: scale(1.03);
+        //box-shadow: 0 0 20px #fff;
     }
     img {
         width: 100%;

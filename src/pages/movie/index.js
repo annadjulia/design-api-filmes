@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { format } from "date-fns";
+import { format, set } from "date-fns";
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import Topo, { Footer } from "../extra";
 import { SliderLegal } from "../home";
+import Swal from "sweetalert2";
 import "./style.css";
 
 const Movie = () => {
@@ -16,58 +17,55 @@ const Movie = () => {
     const [genres, setGenres] = useState([]);
 
     const KEY = process.env.REACT_APP_KEY;
-    useEffect(() => {
-        async function carregaAlike() {
-            fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&with_genres=${genres.slice(0,3)}&language=pt-BR`)
-                    .then((response) => response.json())
-                    .then((data) => {
-                        let res = data.results;
-                        res = res.filter((mov) => {
-                            return mov.id !== movie.id;
-                        });
-                        setAlike(res);
-                        console.log(res);
-                    });
-            }
 
+    async function scrollToTop() {
+        return new Promise(resolve => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+    
+            const checkScroll = setInterval(() => {
+                if (window.scrollY === 0) {
+                    clearInterval(checkScroll);
+                    resolve();
+                }
+            }, 100);
+        });
+    }
+    
+    useEffect(() => {
         async function carregaFilme() {
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${KEY}&language=pt-BR`)
-            .then((response) => response.json())
-            .then((data) => {
-                let filme = data;
-                data.release_date = format(new Date(data.release_date), "dd/MM/yyyy");
-                data.vote_average = data.vote_average.toFixed(1);
-                let genre = data.genres.map((genre) => {
-                    return genre.id;
-                });
-                console.log(genre);
-                setGenres(genre);
-                setMovie(filme);              
-            }); // eslint-disable-next-line
+            Swal.showLoading();
+            const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${KEY}&language=pt-BR`);
+            const data = await response.json();
+            let filme = data;
+            data.release_date = format(new Date(data.release_date), "dd/MM/yyyy");
+            data.vote_average = data.vote_average.toFixed(1);
+            let genre = data.genres.map((genre) => genre.id);
+            setGenres(genre);
+            setMovie(filme);
+            console.log(genre);
         }
         carregaFilme();
-        console.log(genres);
-        carregaAlike();
     }, [id]);
-
+    
+    
     useEffect(() => {
         async function carregaAlike() {
-            fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&with_genres=${genres.slice(0,3)}&language=pt-BR`)
-                    .then((response) => response.json())
-                    .then((data) => {
-                        let res = data.results;
-                        res = res.filter((mov) => {
-                            return mov.id !== movie.id;
-                        });
-                        setAlike(res);
-                        console.log(res);
-                    });
-            }
+            const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&with_genres=${genres.slice(0,3)}&language=pt-BR`);
+            const data = await response.json();
+            let res = data.results.filter((mov) => mov.id !== movie.id);
+            setAlike(res);
+            console.log(res);
+            await scrollToTop();
+            Swal.close();
+        }
         carregaAlike();
-    }, [genres]);
-
+    }, [genres]);  
+    
     document.title = movie.title;
-
+    
     return (
         <div>
             <Topo/>
@@ -75,7 +73,7 @@ const Movie = () => {
             <Container>
                 <Row>
                     <Col md={5}>
-                        <Image fluid
+                        <Image fluid rounded className="imgPoster"
                             src={`${imagePath}${movie.poster_path}`}
                             alt={movie.title}
                         />

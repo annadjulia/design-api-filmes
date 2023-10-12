@@ -36,17 +36,17 @@ export const Mov = styled.li`
     align-items: center;
     justify-content: space-evenly;
     transition: transform 0.3s, box-shadow 0.3s;
-    border-radius: .5rem;
-    border: 1px solid #fff;
+    //border: 1px solid #fff;
+    padding: 0.5vw;
     :hover {
-        transform: scale(1.05);
+        transform: scale(1.03);
         img{
-            box-shadow: 0 0 10px 10px #fff;
+    //        box-shadow: 0 0 10px 10px #fff;
+            //opacity: 0.8;
         }
     }
     img {
         width: 100%;
-        border-radius: .5rem;
         margin-bottom: 1rem;
     }
     p {

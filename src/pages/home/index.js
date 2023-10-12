@@ -4,6 +4,7 @@ import { Container, Row, Col, Image } from "react-bootstrap";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import Carousel  from 'react-bootstrap/Carousel';
+import Swal from "sweetalert2";
 import Topo, { Footer } from "../extra";
 
 const imagePath = "https://image.tmdb.org/t/p/w500";
@@ -15,9 +16,9 @@ const SliderLegal = (props) => {
                 return (
                     <Mov className="col-2" sm={2} key={movie.id}>
                     <Link to={`/${movie.id}`}>
-                        <Image fluid
+                        <Image fluid rounded
                             src={`${imagePath}${movie.poster_path}`}
-                            alt={movie.title}
+                            alt={movie.title} title={movie.title}
                         />
                     </Link>
                     </Mov>
@@ -29,7 +30,6 @@ const SliderLegal = (props) => {
 }
 
 function Home() {
-
     const [list, setList] = useState([]);
     const [pops, setPops] = useState([]);
     const [nows, setNows] = useState([]);
@@ -37,7 +37,9 @@ function Home() {
     const [coms, setComs] = useState([]);
     const KEY = process.env.REACT_APP_KEY;
     useEffect(() => {
+        document.title = "THE WATCHER";
         async function carregaList() {
+            Swal.showLoading();
         fetch(`https://api.themoviedb.org/3/list/8271861?api_key=${KEY}&language=pt-BR`)
             .then(response => response.json())
             .then(data => {
@@ -46,6 +48,7 @@ function Home() {
                 carregaNows();
                 carregaTops();
                 carregaComs();
+                Swal.close();
             });
         }
         async function carregaPops() {
@@ -76,12 +79,11 @@ function Home() {
                 setComs(data.results);
             });
         }
-
+        
         carregaList();
     }, [KEY]);
 
-
-    document.title = "THE WATCHER";
+    
 
     return (
         <div>
@@ -98,7 +100,7 @@ function Home() {
                                     <Col md={7}>
                                         <Image fluid
                                             src={`${imagePath}${movie.backdrop_path}`}
-                                            alt={movie.title}
+                                            alt={movie.title} title={movie.title}
                                         />
                                     </Col>
                                     <Col className="align-content-center" md={5}>

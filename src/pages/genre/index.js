@@ -4,6 +4,7 @@ import { Mov } from "./style";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import Topo, { Footer } from "../extra";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import "./style.css";
 
 const Genre = () => {
@@ -15,22 +16,21 @@ const Genre = () => {
     const [list, setList] = useState([]);
 
     useEffect(() => {
+        Swal.showLoading();
         fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&with_genres=${genreid}&language=pt-BR`)
             .then(response => response.json())
             .then(data => {
                 setList(data.results);
+                Swal.close();
             });
         fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${KEY}&language=pt-BR`)
             .then(response => response.json())
             .then(data => {
-                let [aaa] = data.genres.map((genre) => {
-                    if(genre.id === genreid){
-                        return genre.name;
-                    }
-                })
-                console.log(aaa[0]);
-                setGenreName(aaa[0]);
-        });
+                let genre = data.genres.filter((genre) => {
+                    return genre.id === parseInt(genreid);
+                });
+                setGenreName(genre[0].name);
+            });
     }, [genreid]);
 
     document.title = genreName;
@@ -55,7 +55,7 @@ const Genre = () => {
                                     <Mov key={mov.id}>
                                         <Link to={`/${mov.id}`}>
                                             <div>
-                                                <Image fluid src={imagePath + mov.poster_path} alt={mov.title} />
+                                                <Image rounded fluid src={imagePath + mov.poster_path} alt={mov.title} />
                                             </div>
                                             
                                         </Link>

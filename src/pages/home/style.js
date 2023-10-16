@@ -11,6 +11,16 @@ import styled from "styled-components";
 
 
 export const Fav = styled.li`
+    transition: transform 0.3s, box-shadow 0.3s;
+    //border: 1px solid #fff;
+    padding: 0.5vw;
+    :hover {
+        transform: scale(1.03);
+        img{
+    //        box-shadow: 0 0 10px 10px #fff;
+            //opacity: 0.8;
+        }
+    }
     display: flex;
     align-items: center;
     transition: transform 0.3s, box-shadow 0.3s;

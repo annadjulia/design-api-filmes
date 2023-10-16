@@ -35,6 +35,7 @@ ul{
 }
 .titulo{
   font-family: 'Teko', sans-serif;
+  line-height: 1;
 }
 .aa{
   font-size: 3vw;

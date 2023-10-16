@@ -11,7 +11,7 @@ const imagePath = "https://image.tmdb.org/t/p/w500";
 const SliderLegal = (props) => {
     return (
         <Row>
-        <Slider className="row" lazyLoad="progressive" slidesToScroll={1} slidesToShow={6} dots={true} speed={400}>
+        <Slider className="row" lazyLoad="progressive" slidesToScroll={1} slidesToShow={6} dots={false} speed={400}>
             {props.oloco.map((movie) => {
                 return (
                     <Mov className="col-2" sm={2} key={movie.id}>
@@ -94,7 +94,7 @@ function Home() {
                 <Carousel autoPlay interval={3000} fade indicators={false} >
                     {list.map((movie) => {
                         return (
-                            <Carousel.Item key={movie.id}>
+                            <Carousel.Item className="p-3" key={movie.id}>
                             <Fav className="container-fluid my-4" key={movie.id}>
                                 <Row>
                                     <Col md={7}>
@@ -104,7 +104,7 @@ function Home() {
                                         />
                                     </Col>
                                     <Col md={5}>
-                                        <Row className="align-content-center p-4">
+                                        <Row className="align-content-center p-4 h-100">
                                             <Col auto>
                                                 <p className="titulo aa">{movie.title ? movie.title.toUpperCase() : ""}</p>
                                                 <Link to={`/${movie.id}`}>

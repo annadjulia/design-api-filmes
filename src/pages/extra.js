@@ -24,7 +24,6 @@ function Topo() {
           <Navbar.Toggle aria-controls="navbarsExample09" />
         <Navbar.Collapse id="navbarsExample09">
             <Nav className="me-auto mb-2 mb-lg-0">
-                <Nav.Link href="#">Filmes</Nav.Link>
                 <NavDropdown title="Gêneros" id="basic-nav-dropdown">
                     {genres.map((genre) => {
 

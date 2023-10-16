@@ -1,3 +1,7 @@
 .imgPoster{
     max-height: 80vh;
 }
+.especial{
+    flex: none;
+    width: auto;
+}

@@ -2,8 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Teko', sans-serif;
-  font-size: 1.5vw;
+  font-family: 'Saira', sans-serif;
+  font-size: 1vw;
 }
 
 body {
@@ -32,4 +32,10 @@ ul{
 }
 .carousel{
   margin: 0;
+}
+.titulo{
+  font-family: 'Teko', sans-serif;
+}
+.aa{
+  font-size: 3vw;
 }

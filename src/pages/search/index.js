@@ -7,33 +7,25 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./style.css";
 
-const Genre = () => {
+const Search = () => {
     const KEY = process.env.REACT_APP_KEY;
-    const [genreName, setGenreName] = useState([]);
-    const { genreid } = useParams();
+    const { query } = useParams();
     const imagePath = "https://image.tmdb.org/t/p/w500";
 
     const [list, setList] = useState([]);
 
     useEffect(() => {
         Swal.showLoading();
-        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&with_genres=${genreid}&language=pt-BR`)
+        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${query}`)
             .then(response => response.json())
             .then(data => {
-                setList(data.results);
+                setList(data.results.filter(mov => mov.poster_path));
+                console.log(data.results);
                 Swal.close();
             });
-        fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${KEY}&language=pt-BR`)
-            .then(response => response.json())
-            .then(data => {
-                let genre = data.genres.filter((genre) => {
-                    return genre.id === parseInt(genreid);
-                });
-                setGenreName(genre[0].name);
-            });
-    }, [genreid]);
+    }, [query]);
 
-    document.title = genreName;
+    document.title = "Pesquisa";
 
     return(
         <div>
@@ -43,7 +35,7 @@ const Genre = () => {
                 <Row>
                     <Col>
                         <Row>
-                            <p className="titulo">{genreName}</p>
+                            <p className="titulo">Resultados para: {query}</p>
                         </Row>
                     </Col>
                 </Row>
@@ -73,4 +65,4 @@ const Genre = () => {
 
 }
 
-export default Genre;
+export default Search;

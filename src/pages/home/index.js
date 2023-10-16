@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Mov, Btn, Fav } from "./style";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import { Container, Row, Col, Image, Button } from "react-bootstrap";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import Carousel  from 'react-bootstrap/Carousel';
@@ -90,12 +90,12 @@ function Home() {
             
             <Topo/>
 
-            <Container fluid>
-                <Carousel autoplay interval={3000} fade indicators={false} >
+            <Container>
+                <Carousel autoPlay interval={3000} fade indicators={false} >
                     {list.map((movie) => {
                         return (
                             <Carousel.Item key={movie.id}>
-                            <Fav className="container-fluid" key={movie.id}>
+                            <Fav className="container-fluid my-4" key={movie.id}>
                                 <Row>
                                     <Col md={7}>
                                         <Image fluid
@@ -103,12 +103,12 @@ function Home() {
                                             alt={movie.title} title={movie.title}
                                         />
                                     </Col>
-                                    <Col className="align-content-center" md={5}>
-                                        <Row>
+                                    <Col md={5}>
+                                        <Row className="align-content-center p-4">
                                             <Col auto>
-                                                <p>{movie.title}</p>
+                                                <p className="titulo aa">{movie.title ? movie.title.toUpperCase() : ""}</p>
                                                 <Link to={`/${movie.id}`}>
-                                                    <Btn>Ver mais</Btn>
+                                                    <Button>Ver mais</Button>
                                                 </Link>
                                             </Col>
                                         </Row>
@@ -121,16 +121,16 @@ function Home() {
                 </Carousel>
             </Container>
             <Container>
-                <h1>Em cartaz</h1>
+                <h1 className="titulo">EM CARTAZ</h1>
                 <SliderLegal oloco={nows} />
 
-                <h1>Populares</h1>
+                <h1 className="titulo">Populares</h1>
                 <SliderLegal oloco={pops} />
 
-                <h1>Melhores classificações</h1>
+                <h1 className="titulo">Melhores classificações</h1>
                 <SliderLegal oloco={tops} />
 
-                <h1>Em breve</h1>
+                <h1 className="titulo">Em breve</h1>
                 <SliderLegal oloco={coms} />
             </Container>
             <Footer/>

@@ -21,14 +21,14 @@ function Topo() {
         <Navbar bg="light">
         <Container>
           <Navbar.Brand href="/"><Image src="https://res.cloudinary.com/dj1sdgtdr/image/upload/v1696754878/sl9kykdycraptdquub5y.png" alt="logo" width="auto" height="50" /></Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarsExample09" />
+        
         <Navbar.Collapse id="navbarsExample09">
             <Nav className="me-auto mb-2 mb-lg-0">
                 <NavDropdown title="Gêneros" id="basic-nav-dropdown">
                     {genres.map((genre) => {
 
                             return (
-                                    <NavDropdown.Item key={genre.id} onClick={() => navigation(`/discover/${genre.id}`)}>{genre.name}</NavDropdown.Item>
+                                    <NavDropdown.Item className="ee" key={genre.id} onClick={() => navigation(`/discover/${genre.id}`)}>{genre.name}</NavDropdown.Item>
                             );
                     })}
                 </NavDropdown>

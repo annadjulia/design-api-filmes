@@ -66,3 +66,16 @@ ul{
 .cc{
   text-align: center;
 }
+.navbar-collapse a{
+  color: #dc3545;
+}
+.nav-link:focus{
+  color:  #dc3545;
+}
+.ee:hover{
+  background-color:  #dc3545;
+  color: #fff;
+}
+.form-control{
+  border: none;
+}

@@ -19,27 +19,27 @@ function Topo() {
 
     return (
         <Navbar bg="light">
-        <Container>
-          <Navbar.Brand href="/"><Image src="https://res.cloudinary.com/dj1sdgtdr/image/upload/v1696754878/sl9kykdycraptdquub5y.png" alt="logo" width="auto" height="50" /></Navbar.Brand>
-        
-        <Navbar.Collapse id="navbarsExample09">
-            <Nav className="me-auto mb-2 mb-lg-0">
-                <NavDropdown title="Gêneros" id="basic-nav-dropdown">
-                    {genres.map((genre) => {
+        <Container className="px-3">
+                <Navbar.Brand href="/"><Image src="https://res.cloudinary.com/dj1sdgtdr/image/upload/v1696754878/sl9kykdycraptdquub5y.png" alt="logo" width="auto" height="50" /></Navbar.Brand>
+                
+                <Navbar.Collapse id="navbarsExample09">
+                    <Nav className="me-auto mb-2 mb-lg-0">
+                        <NavDropdown title="Gêneros" id="basic-nav-dropdown">
+                            {genres.map((genre) => {
 
-                            return (
-                                    <NavDropdown.Item className="ee" key={genre.id} onClick={() => navigation(`/discover/${genre.id}`)}>{genre.name}</NavDropdown.Item>
-                            );
-                    })}
-                </NavDropdown>
-            </Nav>
-            <Form role="search" onSubmit={(event) => {
-                event.preventDefault();
-                navigation(`/search/${query}`);
-            }}>
-                <FormControl type="text" value={query} placeholder="Pesquisar" aria-label="Search" onChange={(event) => setQuery(event.target.value)} className="mr-2" />
-            </Form>
-        </Navbar.Collapse>
+                                    return (
+                                            <NavDropdown.Item className="ee" key={genre.id} onClick={() => navigation(`/discover/${genre.id}`)}>{genre.name}</NavDropdown.Item>
+                                    );
+                            })}
+                        </NavDropdown>
+                    </Nav>
+                    <Form role="search" onSubmit={(event) => {
+                        event.preventDefault();
+                        navigation(`/search/${query}`);
+                    }}>
+                        <FormControl type="text" value={query} placeholder="Pesquisar" aria-label="Search" onChange={(event) => setQuery(event.target.value)} className="mr-2" />
+                    </Form>
+                </Navbar.Collapse>
         </Container>
       </Navbar>
     );

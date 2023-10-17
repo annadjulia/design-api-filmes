@@ -108,7 +108,7 @@ function Home() {
                                             <Col auto>
                                                 <p className="titulo aa">{movie.title ? movie.title.toUpperCase() : ""}</p>
                                                 <Link to={`/${movie.id}`}>
-                                                    <Button>Ver mais</Button>
+                                                    <Button variant="danger">Ver mais</Button>
                                                 </Link>
                                             </Col>
                                         </Row>
@@ -121,16 +121,16 @@ function Home() {
                 </Carousel>
             </Container>
             <Container>
-                <h1 className="titulo">EM CARTAZ</h1>
+                <h1 className="titulo bb">Em cartaz</h1>
                 <SliderLegal oloco={nows} />
 
-                <h1 className="titulo">Populares</h1>
+                <h1 className="titulo bb">Populares</h1>
                 <SliderLegal oloco={pops} />
 
-                <h1 className="titulo">Melhores classificações</h1>
+                <h1 className="titulo bb">Melhores classificações</h1>
                 <SliderLegal oloco={tops} />
 
-                <h1 className="titulo">Em breve</h1>
+                <h1 className="titulo bb">Em breve</h1>
                 <SliderLegal oloco={coms} />
             </Container>
             <Footer/>

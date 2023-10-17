@@ -43,7 +43,7 @@ const Genre = () => {
                 <Row>
                     <Col>
                         <Row>
-                            <p className="titulo">{genreName}</p>
+                            <h1 className="titulo dd">{genreName}</h1>
                         </Row>
                     </Col>
                 </Row>

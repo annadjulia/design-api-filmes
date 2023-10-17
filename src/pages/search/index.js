@@ -35,7 +35,7 @@ const Search = () => {
                 <Row>
                     <Col>
                         <Row>
-                            <p className="titulo">Resultados para: {query}</p>
+                            <h1 className="titulo dd">Resultados para: {query}</h1>
                         </Row>
                     </Col>
                 </Row>

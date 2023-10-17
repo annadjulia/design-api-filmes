@@ -120,7 +120,7 @@ const Movie = () => {
                                             {movie.genres.map((genre) => {
                                                 return (
                                                     <Link key={genre.id} to={`/discover/${genre.id}`}>
-                                                        <li className="badge me-2 mb-1 text-bg-light rounded-pill">
+                                                        <li className="badge m-1 text-bg-light rounded-pill">
                                                             {genre.name}
                                                         </li>
                                                     </Link>
@@ -130,7 +130,7 @@ const Movie = () => {
                                     </div>
                                 )}
                                 <Link to='/'>
-                                    <Button variant="primary">Voltar para Home</Button>
+                                    <Button variant="danger">Voltar para Home</Button>
                                 </Link>
                             </Row>
                                 
@@ -140,7 +140,7 @@ const Movie = () => {
                 </Row>
             </Container>
             <Container>
-                <h1 className="titulo">Filmes parecidos</h1>
+                <h1 className="titulo bb">Filmes parecidos</h1>
                 <SliderLegal oloco={alike}/>
             </Container>
             <Footer/>

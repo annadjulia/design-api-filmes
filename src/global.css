@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Saira', sans-serif;
-  font-size: 1vw;
+  font-size: 1.05vw;
 }
 
 body {
@@ -39,4 +39,30 @@ ul{
 }
 .aa{
   font-size: 3vw;
+}
+.bb{
+  margin: 2vw 1.3vw 0.8vw;
+}
+.dd{
+  margin: 2vw 0 0.7vw -0.7vw;
+}
+.carousel-control-next{
+  right: -7.8vw;
+}
+.carousel-control-prev{
+  left: -7.8vw;
+}
+.badge{
+  font-size: 1vw;
+}
+.notape p{
+  color: #dc3545;
+  font-weight: bold;
+  margin: 0;
+  text-align: end;
+  text-decoration: underline;
+  margin: 1vw 0;
+}
+.cc{
+  text-align: center;
 }

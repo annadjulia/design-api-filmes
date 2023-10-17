@@ -16,6 +16,7 @@ export const Mov = styled.li`
     justify-content: space-evenly;
     transition: transform 0.3s, box-shadow 0.3s;
     border-radius: .5rem;
+    margin-top: 1vw;
     //border: 1px solid #fff;
     :hover {
         transform: scale(1.03);

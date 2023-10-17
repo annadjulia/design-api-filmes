@@ -59,26 +59,34 @@ function Footer() {
     return (
         <Navbar bg="light">
             <Container>
-                <Row>
-                    <Col sm={5}>
-                        <Image fluid src="https://res.cloudinary.com/dj1sdgtdr/image/upload/v1696754878/sl9kykdycraptdquub5y.png" alt="logo" />
+                <Row className="py-4">
+                    <Col sm={3}>
+                        <Image fluid className="rodafoto" src="https://res.cloudinary.com/dj1sdgtdr/image/upload/v1696754878/sl9kykdycraptdquub5y.png" alt="logo" />
                     </Col>
-                    <Col sm={2}>
-                        <p>Filmes</p>
-                        {genres.map((genre) => {
-                            return (
-                                <Link key={genre.id} to={`/discover/${genre.id}`}>
-                                <li className="badge me-2 mb-1 text-bg-danger rounded-pill" >
-                                    {genre.name}
-                                </li>
-                                </Link>
-                            );
-                    })}
+                    <Col sm={6}>
+                        <Row className="align-content-center px-5 h-100 cc">
+                            <Col>
+                                {genres.map((genre) => {
+                                return (
+                                    <Link key={genre.id} to={`/discover/${genre.id}`}>
+                                    <li className="badge m-1 text-bg-danger rounded-pill" >
+                                        {genre.name}
+                                    </li>
+                                    </Link>
+                                );
+                                })}
+                            </Col>
+                        </Row>                    
                     </Col>
-                    <Col sm={5}>
-                        <p>Contato</p>
-                        <p>Sobre</p>
-                        <p>Termos de uso</p>
+                    <Col className="notape" sm={3}>
+                        <Row className="align-content-center h-100">
+                            <Col>
+                                <p>Contato</p>
+                                <p>Sobre</p>
+                                <p>Termos de uso</p>
+                            </Col>
+                        </Row>
+                        
                     </Col>
                 </Row>
             </Container>
